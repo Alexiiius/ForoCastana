@@ -45,7 +45,12 @@
                                 @endif
                             </div>
                             <div class="text-sm text-gray-500">
-                                {{ __('By') }}: {{ $thread->user->name }}
+                                {{ __('By') }}: 
+                                @isset($thread->user)
+                                    <a href="{{ route('user.show', $thread->user->id) }}">{{ $thread->user->name }}</a>
+                                @else
+                                    <span>{{ __('Deleted User') }}</span>
+                                @endisset
                             </div>
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap">
@@ -53,7 +58,13 @@
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap">
                             @if ($latestComment = $thread->latestComment())
-                                <div class="text-sm text-gray-900">{{ $latestComment->user->name }}</div>
+                            <div class="text-sm text-gray-900">
+                                @isset($latestComment->user)
+                                    {{ $latestComment->user->name }}
+                                @else
+                                    {{ __('Deleted User') }}
+                                @endisset
+                            </div>
                                 <div>{{ $latestComment->created_at->translatedFormat('d F Y H:i') }}</div>
                             @else
                                 <div class="text-sm text-gray-900"> {{ __('There are no comments yet.') }}  </div>

@@ -20,6 +20,7 @@ return new class extends Migration
             $table->boolean('is_blocked')->default(false);
             $table->enum('role', ['user', 'admin'])->default('user')->index();
             $table->string('language', 2)->default('es');
+            $table->string('avatar')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

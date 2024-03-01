@@ -16,8 +16,8 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id')->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->index();
             $table->unsignedBigInteger('admin_id')->foreign('admin_id')->references('id')->on('users')->onDelete('cascade')->index();
             $table->text('reason');
-            $table->timestamp('ban_start');
-            $table->timestamp('ban_end')->nullable();
+            $table->timestamp('ban_start')->default(now());
+            $table->dateTime('ban_end')->nullable();
             $table->timestamps();
         });
     }

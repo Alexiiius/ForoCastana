@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 use Illuminate\Validation\Rule;
+use App\Models\User;
 
 class ProfileController extends Controller
 {
@@ -71,4 +72,29 @@ class ProfileController extends Controller
 
         return Redirect::to('/');
     }
+
+    //Devolver vista de perfil publico de usuario segun su id
+    public function show($id): View
+    {
+        $user = User::find($id);
+        return view('userProfile', ['user' => $user]);
+    }
+
+    public function uploadAvatar(Request $request){
+        $request->validate([
+            'avatar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        $user = Auth::user();
+
+        $avatarName = $user->id.'.'.request()->avatar->getClientOriginalExtension();
+
+        $request->avatar->storeAs('avatars', $avatarName, 'public');
+
+        $user->avatar = $avatarName;
+        $user->save();
+
+        return back()->with('status','avatar-updated');
+    }
+
 }

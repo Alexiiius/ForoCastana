@@ -6,7 +6,7 @@
 
         <!-- Logica de mostrar acciones -->
         @php
-            $isUserAdminOrThreadCreator = Auth::user()->isAdmin() || $thread->user->id == Auth::id();
+            $isUserAdminOrThreadCreator = Auth::user()->isAdmin() || ($thread->user->id ?? null) == Auth::id() ;
             $actions = [
                 ['condition' => $isUserAdminOrThreadCreator && !$thread->isClosed(), 'route' => 'thread.close', 'text' =>  __('Close Thread')],
                 ['condition' => $isUserAdminOrThreadCreator && $thread->isClosed(), 'route' => 'thread.open', 'text' =>  __('Open Thread')],
@@ -46,23 +46,31 @@
         </div>
 
         <!-- Comentarios y hilo -->
-        <div class="bg-[#b39c7e] shadow overflow-hidden sm:rounded-lg mb-4 mt-5">
-            <div class="px-4 py-5 sm:px-6">
+        <div class="bg-[#f5f0d5] shadow overflow-hidden sm:rounded-lg mb-4 mt-5">
+            <div class="px-4 py-5 sm:px-6 flex justify-between items-center">
                 <h2 class="text-lg leading-6 font-medium text-gray-900">
                     {{ $thread->title }}
-                    @if($thread->is_closed)
-                        <i class="fas fa-lock"></i>
-                    @endif
                 </h2>
+                @if($thread->is_closed)
+                    <i class="fas fa-lock text-red-500"></i>
+                @endif
             </div>
             <div class="border-t border-gray-200">
                 <dl>
                 @foreach ($comments->sortBy('created_at') as $index => $comment)
-                    <div class="{{ $index % 2 == 0 ? 'bg-blue-50' : 'bg-green-50' }} px-4 py-5 grid grid-cols-12 gap-4 sm:px-6">
-                        <dt class="text-sm font-medium text-[#333333] col-span-2">
-                            {{ $comment->user->name }}
+                    <div class="{{ $index % 2 == 0 ? 'bg-blue-50' : 'bg-green-50' }} px-4 py-5 rounded-lg shadow-md grid grid-cols-12 gap-4 sm:px-6 mb-4">
+                        <dt class="text-sm font-medium text-gray-700 col-span-2 flex items-center space-x-4">
+                            <img src="{{ asset('storage/avatars/' . ($comment->user->avatar ?? 1 )) }}" alt="User Avatar" class="w-20 h-20 object-cover rounded-full border-2 border-blue-500" />
+                            <div>
+                                @isset($comment->user)
+                                    <a href="{{ route('user.show', $comment->user->id) }}" class="text-lg text-blue-700 font-semibold">{{ $comment->user->name }}</a>
+                                @else
+                                    <span class="text-lg text-blue-700 font-semibold">{{ __('Deleted User') }}</span>
+                                @endisset
+                                <p class="text-xs text-gray-500">{{ $comment->created_at->diffForHumans() }}</p>
+                            </div>
                         </dt>
-                        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 col-span-10">
+                        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 col-span-10 bg-white p-4 rounded-lg shadow-sm">
                             {{ $comment->content }}
                         </dd>
                     </div>

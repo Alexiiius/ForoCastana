@@ -112,5 +112,21 @@
     "Profile Updated.": "Perfil actualizado.",
     "Confirmation": "Confirmación",
     "Create Thread": "Crear hilo",
-    "Enter the title": "Introduce el título"
+    "Enter the title": "Introduce el título",
+    "Ban User": "Bloquear usuario",
+    "Unban User": "Desbloquear usuario",
+    "Reason": "Motivo",
+    "Role": "Rol",
+    "Profile of ": "Perfil de ",
+    "Admin Actions": "Acciones de administrador",
+    "Ban end date": "Fecha de fin del bloqueo",
+    "My Profile": "Mi perfil",
+    "© 2024 ForoCastanares": "© 2024 ForoCasña",
+    "Avatar updated.": "Avatar actualizado.",
+    "Update your avatar image.": "Actualiza tu imagen de avatar.",
+    "Avatar Settings": "Configuración de avatar",
+    "A new verification link has been sent to your email address.": "Se ha enviado un nuevo enlace de verificación a tu dirección de correo electrónico.",
+    "Click here to re-send the verification email.": "Haz clic aquí para reenviar el correo de verificación.",
+    "Your email address is unverified.": "Tu dirección de correo electrónico no está verificada.",
+    "Deleted User": "Usuario eliminado"
 }

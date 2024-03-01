@@ -18,7 +18,7 @@ class ThreadFactory extends Factory
     public function definition(): array
     {
         return [
-            'title' => Str::limit($this->faker->sentence(6), 20),
+            'title' => $this->faker->text(20),
             'user_id' => \App\Models\User::all()->random()->id,
             'is_closed' => false,
         ];

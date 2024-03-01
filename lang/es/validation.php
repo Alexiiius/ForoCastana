@@ -162,6 +162,7 @@ return [
         'title' => 'título',
         'reason' => 'razón',
         'current_password' => 'contraseña actual',
+        'ban_end' => 'fin del ban',
     ],
 
 ];

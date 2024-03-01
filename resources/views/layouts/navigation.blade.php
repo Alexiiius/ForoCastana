@@ -16,6 +16,13 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
                 </div>
+
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                <x-nav-link :href="route('user.show', Auth::user()->id)" :active="request()->routeIs('user.show')">
+                    {{ __('My Profile') }}
+                </x-nav-link>
+                </div>
+
             </div>
 
             <!-- Settings Dropdown -->
@@ -35,7 +42,7 @@
 
                     <x-slot name="content">
                         <x-dropdown-link :href="route('profile.edit')">
-                            {{ __('Profile') }}
+                            {{ __('Edit Profile') }}
                         </x-dropdown-link>
 
                         <!-- Authentication -->
