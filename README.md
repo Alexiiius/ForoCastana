@@ -14,7 +14,7 @@ A simple web forum about chestnuts made with Laravel! Feel free to talk with oth
 
 ## Requirements
 
-- PHP >= 7.3
+- PHP >= 8.2
 - Composer
 - Node.js & npm
 - Docker & Docker Compose (for Laravel Sail)
