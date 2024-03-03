@@ -1,7 +1,7 @@
 <x-app-layout>
 
     <script>
-        window.onload = function() {
+        document.addEventListener("DOMContentLoaded", function() {
             var status = "{{ session('status') }}";
             var elementId;
 
@@ -23,7 +23,7 @@
             if (elementId) {
                 document.getElementById(elementId).scrollIntoView();
             }
-        }
+        });
     </script>
 
     <x-slot name="header">
