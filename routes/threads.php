@@ -19,6 +19,9 @@ Route::middleware(['auth'])->prefix('thread/{thread}')->group(function () {
     Route::post('/comments', [CommentController::class, 'store'])->name('comment.store');
 });
 
-Route::middleware(['auth'])->post('/thread/store', [ThreadController::class, 'store'])->name('thread.store');
+Route::middleware(['auth'])->group(function () {
+    Route::delete('/comments/{comment}', [CommentController::class, 'delete'])->name('comment.delete');
+    Route::post('/thread/store', [ThreadController::class, 'store'])->name('thread.store');
+});
 
 require __DIR__.'/auth.php';

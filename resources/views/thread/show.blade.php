@@ -73,6 +73,18 @@
                         <dd class="mt-1 text-sm text-gray-900 sm:mt-0 col-span-10 bg-white p-4 rounded-lg shadow-sm">
                             {{ $comment->content }}
                         </dd>
+                        <div class="flex justify-end">
+                            @if ($comment->user_id == Auth::id() || Auth::user()->isAdmin())
+                                <form method="POST" action="{{ route('comment.delete', $comment) }}" onsubmit="return confirm('{{ __('are_you_sure') }}');" class="mr-2 mb-2 mt-2 mb-2" id="eliminarcomment">
+                                    @csrf
+                                    @method('DELETE')
+                                        <x-mis-componentes.boton-alert 
+                                        text="{{ __('Delete') }} "
+                                        idsubmit="eliminarcomment"
+                                        />
+                                </form>
+                            @endif
+                        </div>
                     </div>
                 @endforeach
                 </dl>

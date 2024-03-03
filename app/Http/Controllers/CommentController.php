@@ -33,4 +33,17 @@ class CommentController extends Controller
     
         return back();
     }
+
+    // Elimina un comentario
+    public function delete(Comment $comment){
+
+        if ($comment->user_id != Auth::id() && !Auth::user()->isAdmin()) {
+            return back();
+        }
+
+        $comment->delete();
+        return back();
+    }
+
+
 }
