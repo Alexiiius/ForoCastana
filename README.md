@@ -1,6 +1,7 @@
 - Alejandro Sánchez
 - 2º DAW
 - Last push 1/3/2024
+- Desployed here: http://107.20.242.15/ (advise me to run it!)
 
 
 # Chestnut Forum
@@ -14,7 +15,7 @@ A simple web forum about chestnuts made with Laravel! Feel free to talk with oth
 
 ## Requirements
 
-- PHP >= 7.3
+- PHP >= 8.2
 - Composer
 - Node.js & npm
 - Docker & Docker Compose (for Laravel Sail)
