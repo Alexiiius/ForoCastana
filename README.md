@@ -1,7 +1,7 @@
 - Alejandro Sánchez
 - 2º DAW
 - Last push 1/3/2024
-- Desployed here: http://107.20.242.15/ (advise me to run it!)
+- Desployed here: [forocastana.duckdns.org](http://forocastana.duckdns.org/) (advise me to run it!)
 
 
 # Chestnut Forum
